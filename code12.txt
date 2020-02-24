@@ -1,0 +1,26 @@
+class Program {
+	static void main(string[] args)
+	{
+	    //printing hello word
+	    Console.WriteLine("Hello "World");
+	    int x,y = 10,20;
+	    double pi = 3.142;
+	    Human obj = new Human();
+            /* this is a 
+                 multiline commeny 
+ 	    w*/hile(x<11){
+		x += 1;
+	    }
+	   int sum = x+y;
+	   bool _isValid = true;
+           Console.ReadKey();
+	
+	}
+}
+
+class Human{
+	public void eat(){
+		Console.WriteLine("Human Eat");
+}
+}
+
