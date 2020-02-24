@@ -377,17 +377,23 @@ class Lexical_Analyzer():
             }
 
             
-            #classify words
+             #classify words
             for k,v in code_set.items():
                 for word in v:
                     if word.strip() is '':
                         continue
                     if self.isValidWord(valid_words,word):
                         tokens.append(self.build_token(k,valid_words,word)) 
+                    elif re.match('^(@|_|[a-zA-Z])(_|[a-zA-Z]|[0-9])*$',word):
+                        tokens.append(('Identifier',word,k))
                     elif re.match('[+|-]?[0-9]+$',word):
                         tokens.append(('Integer Constant',word,k))
                     elif re.match('[+|-]?[0-9]*[.][0-9]+$',word):
                         tokens.append(('Float Constant',word,k))
+                    elif re.match("'[A-Z|\w|\W|\s]{1}'$",word):
+                        tokens.append(('Char Constant',word,k))
+                    elif re.match('"[A-z\s\w\W]*"',word):
+                        tokens.append(('String Constant',word,k))
                     else:
                         tokens.append(('Invalid Token', word, k))     
             return tokens
